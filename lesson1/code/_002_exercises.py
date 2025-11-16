@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from main import df
+from _001_main import df
 
 # УПРАЖНЕНИЕ 1: "Анализ эффективности менеджеров"
 result = (
