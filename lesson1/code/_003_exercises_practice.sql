@@ -3,7 +3,6 @@ DROP VIEW IF EXISTS sales;
 DROP VIEW IF EXISTS sales_q1;
 DROP VIEW IF EXISTS sales_q2;
 DROP TABLE IF EXISTS sales_data;
-
 CREATE TABLE sales_data (
     manager VARCHAR(50),
     department VARCHAR(1),
@@ -11,10 +10,9 @@ CREATE TABLE sales_data (
     experience INT,
     period VARCHAR(2)
 );
-
 -- Заполняем данными
-INSERT INTO sales_data VALUES
-('Иван', 'А', 15000, 2, 'Q1'),
+INSERT INTO sales_data
+VALUES ('Иван', 'А', 15000, 2, 'Q1'),
 ('Мария', 'Б', 22000, 5, 'Q1'),
 ('Петр', 'А', 17000, 3, 'Q1'),
 ('Анна', 'В', 12000, 1, 'Q1'),
@@ -23,10 +21,23 @@ INSERT INTO sales_data VALUES
 ('Мария', 'Б', 19000, 5, 'Q2'),
 ('Анна', 'В', 14000, 1, 'Q2'),
 ('Ольга', 'А', 16000, 2, 'Q2');
-
-CREATE VIEW sales AS SELECT * FROM sales_data;
-
+CREATE VIEW sales AS
+SELECT *
+FROM sales_data;
 --Упражнение 1
 
 
 --Упражнение 2
+SELECT *
+FROM (
+    SELECT
+        *,
+        CASE
+            WHEN revenue > 20000 THEN 'vip'
+            WHEN revenue >= 10000 THEN 'standart'
+            ELSE 'basic'
+        END AS category
+    FROM sales
+) AS classified
+WHERE category = 'vip'
+ORDER BY revenue DESC;
