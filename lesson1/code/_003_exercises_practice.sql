@@ -27,3 +27,6 @@ INSERT INTO sales_data VALUES
 CREATE VIEW sales AS SELECT * FROM sales_data;
 
 --Упражнение 1
+
+
+--Упражнение 2
