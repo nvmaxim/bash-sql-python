@@ -27,6 +27,13 @@ FROM sales_data;
 
 --Упражнение 1
 
+SELECT
+    department,
+    avg(revenue) AS avg_revenue
+FROM sales_data
+WHERE department = 'А' OR department = 'Б'
+GROUP BY department
+ORDER BY avg_revenue
 
 --Упражнение 2
 
