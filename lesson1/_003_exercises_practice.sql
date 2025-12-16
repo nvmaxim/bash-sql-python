@@ -27,13 +27,6 @@ FROM sales_data;
 
 --Упражнение 1
 
-SELECT
-    department,
-    avg(revenue) AS avg_revenue
-FROM sales_data
-WHERE department = 'А' OR department = 'Б'
-GROUP BY department
-ORDER BY avg_revenue
 
 --Упражнение 2
 
@@ -42,6 +35,13 @@ ORDER BY avg_revenue
 
 
 --Упражнение 4
-
+SELECT
+    manager,
+    department,
+    revenue AS sales,
+    revenue * 0.10 AS bonus
+FROM sales_data
+WHERE experience >= 2 AND department IN ('А', 'Б')
+ORDER BY revenue DESC;
 
 --Упражнение 5
