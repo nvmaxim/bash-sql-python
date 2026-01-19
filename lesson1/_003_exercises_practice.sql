@@ -25,38 +25,11 @@ CREATE VIEW sales AS
 SELECT *
 FROM sales_data;
 
---Упражнение 1
-
-
---Упражнение 2
-DROP VIEW IF EXISTS sales_q1;
-CREATE VIEW sales_q1 AS
-SELECT * FROM sales_data
-WHERE period = 'Q1';
-
-DROP VIEW IF EXISTS sales_q2;
-CREATE VIEW sales_q2 AS
-SELECT * FROM sales_data
-WHERE period = 'Q2';
-
+--Упражнение
 SELECT
-    manager,
-    sum(revenue) AS total_revenue
-FROM (SELECT
-    manager,
-    revenue
-FROM sales_q1
-UNION ALL
-SELECT
-    manager,
-    revenue
-FROM sales_q2)
-GROUP BY manager
+    department,
+    avg(revenue) AS total_revenue
+FROM sales_data
+WHERE department IN ('А', 'Б')
+GROUP BY department
 ORDER BY total_revenue DESC;
---Упражнение 3
-
-
---Упражнение 4
-
-
---Упражнение 5
