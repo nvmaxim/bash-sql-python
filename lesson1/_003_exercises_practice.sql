@@ -26,10 +26,3 @@ SELECT *
 FROM sales_data;
 
 --Упражнение
-SELECT
-    department,
-    avg(revenue) AS total_revenue
-FROM sales_data
-WHERE department IN ('А', 'Б')
-GROUP BY department
-ORDER BY total_revenue DESC;
