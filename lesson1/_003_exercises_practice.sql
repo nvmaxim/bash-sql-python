@@ -26,13 +26,32 @@ SELECT *
 FROM sales_data;
 
 --Упражнение
-SELECT * FROM (SELECT
-    *,
-    CASE
-        WHEN revenue >= 18000 THEN 'VIP'
-        WHEN revenue >= 10000 THEN 'Standard'
-        ELSE 'Basic'
-    END AS category
-FROM sales_data) AS calssification
-WHERE category = 'VIP'
-ORDER BY revenue DESC;
+DROP VIEW IF EXISTS period_q1;
+CREATE VIEW period_q1 AS
+SELECT
+    manager,
+    revenue
+FROM sales_data
+WHERE period = 'Q1';
+DROP VIEW IF EXISTS period_q2;
+CREATE VIEW period_q2 AS
+SELECT
+    manager,
+    revenue
+FROM sales_data
+WHERE period = 'Q2';
+
+SELECT
+    manager,
+    sum(revenue) AS total_revenue
+FROM (SELECT
+    manager,
+    revenue
+FROM period_q1
+UNION ALL
+SELECT
+    manager,
+    revenue
+FROM period_q2) AS combined
+GROUP BY manager
+ORDER BY total_revenue DESC;
