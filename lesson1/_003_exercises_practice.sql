@@ -26,32 +26,17 @@ SELECT *
 FROM sales_data;
 
 --Упражнение
-DROP VIEW IF EXISTS period_q1;
-CREATE VIEW period_q1 AS
+-- УПРАЖНЕНИЕ 5: "Комплексный отчет"
 SELECT
-    manager,
-    revenue
-FROM sales_data
-WHERE period = 'Q1';
-DROP VIEW IF EXISTS period_q2;
-CREATE VIEW period_q2 AS
-SELECT
-    manager,
-    revenue
-FROM sales_data
-WHERE period = 'Q2';
-
-SELECT
-    manager,
-    sum(revenue) AS total_revenue
-FROM (SELECT
-    manager,
-    revenue
-FROM period_q1
-UNION ALL
-SELECT
-    manager,
-    revenue
-FROM period_q2) AS combined
-GROUP BY manager
+    department,
+    COUNT(manager) AS managers_count,
+    SUM(revenue) AS total_revenue,
+    SUM(revenue) * 1.0 / SUM(SUM(revenue)) OVER () AS revenue_share,
+    SUM(revenue) * 1.0 / COUNT(manager) AS avg_per_manager,
+    CASE
+        WHEN SUM(revenue) * 1.0 / COUNT(manager) > 18000 THEN 'Да'
+        ELSE 'Нет'
+    END AS high_performance
+FROM sales
+GROUP BY department
 ORDER BY total_revenue DESC;
