@@ -28,9 +28,12 @@ FROM sales_data;
 --Упражнение
 -- УПРАЖНЕНИЕ 5: "Комплексный отчет" (SQL)
 SELECT
-    manager,
     department,
-    revenue AS sales,
-    revenue * 0.10 AS bonus
+    count(manager) AS manager_count,
+    sum(revenue) AS total_revenue,
+    sum(revenue) * 1.0 / sum(sum(revenue)) OVER () AS revenue_share,
+    sum(revenue) * 1.0 / count(manager) AS avg_per_manager,
+    CASE WHEN sum(revenue) * 1.0 / count(manager) >= 18000 THEN "Yes" ELSE "No" END AS hihg_perfomance_flag
 FROM sales_data
-WHERE experience >= 2 AND department IN ('А', 'Б');
+GROUP BY department
+ORDER BY total_revenue ASC;
