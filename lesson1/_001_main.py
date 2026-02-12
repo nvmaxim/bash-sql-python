@@ -1,5 +1,6 @@
 import pandas as pd
-from sqlalchemy import create_engine
+
+# from sqlalchemy import create_engine
 
 # # Созданный дата фрейм
 # sales_data = pd.DataFrame(
@@ -24,7 +25,7 @@ from sqlalchemy import create_engine
 
 # Чтение данных из Excel файла
 df_csv = pd.read_csv(
-    r"C:\Users\nvmaxim\Desktop\excel-sql-python\lesson1\data\sales_data.csv",
+    "/home/nvmaxim/Projects/bash-sql-python/lesson1/data/sales_data.csv",
     sep=";",
 )
 df = df_csv
