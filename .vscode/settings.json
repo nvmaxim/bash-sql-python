@@ -7,9 +7,9 @@
             "port": 5432,
             "driver": "PostgreSQL",
             "name": "connection_study",
-            "database": "study",
-            "username": "postgres",
-            "password": "4470"
+            "database": "learning_db",
+            "username": "nvmaxim",
+            "password": "my_secret_pass"
         }
     ]
 }
